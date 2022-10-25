@@ -19,6 +19,7 @@
   <div class="container">
     <router-view />
   </div>
+  <modals-container></modals-container>
 </template>
 
 <style lang="scss">
