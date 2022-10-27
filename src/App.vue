@@ -19,8 +19,31 @@
   <div class="container">
     <router-view />
   </div>
-  <modals-container></modals-container>
+  <AppModalToAcceptCartridgies
+    v-if="setCartridgeVisible"
+  ></AppModalToAcceptCartridgies>
+  <AppModalSetCartrige v-if="toAcceptCartridgeVisible"></AppModalSetCartrige>
 </template>
+
+<script>
+import AppModalToAcceptCartridgies from "./components/Modals/AppModalToAcceptCartridgies.vue";
+import AppModalSetCartrige from "./components/Modals/AppModalSetCartrige.vue";
+import { mapGetters } from "vuex";
+export default {
+  name: "App",
+  components: {
+    // eslint-disable-next-line vue/no-unused-components
+    AppModalToAcceptCartridgies,
+    AppModalSetCartrige,
+  },
+  computed: {
+    ...mapGetters("modals", [
+      "setCartridgeVisible",
+      "toAcceptCartridgeVisible",
+    ]),
+  },
+};
+</script>
 
 <style lang="scss">
 $base-font-size: 16px;
