@@ -19,7 +19,7 @@ export default {
       }
     },
     showModal(state, id) {
-      state.modalsVisible[id] = false;
+      state.modalsVisible[id] = true;
     },
   },
   actions: {

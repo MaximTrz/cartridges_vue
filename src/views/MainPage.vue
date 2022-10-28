@@ -4,8 +4,7 @@
       <li class="main-action__item --accept">
         <div
           class="main-action__link"
-          data-bs-toggle="modal"
-          data-bs-target="#accept"
+          @click="showModal('toAcceptCartridgeVisible')"
         >
           Принять картридж на заправку
         </div>
@@ -16,8 +15,7 @@
       <li class="main-action__item --install">
         <div
           class="main-action__link"
-          data-bs-toggle="modal"
-          data-bs-target="#install"
+          @click="showModal('setCartridgeVisible')"
         >
           Установить картридж
         </div>
@@ -38,8 +36,13 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "MainPage",
+  methods: {
+    ...mapActions("modals", ["showModal"]),
+  },
 };
 </script>
 

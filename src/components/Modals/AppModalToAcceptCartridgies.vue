@@ -1,23 +1,26 @@
 <template>
   <AppModalDialog>
     <template v-slot:body>
-      <div class="modal-content">
-        <h5 class="modal-title">Принять картридж на заправку</h5>
-
-        <div class="modal-body">
+      <h5 class="modal-title">Установить картридж в принтер</h5>
+      <form class="install">
+        <div class="input-group">
           <select class="form-select">
             <option selected>Выберите картридж</option>
             <option value="1">One</option>
             <option value="2">Two</option>
             <option value="3">Three</option>
           </select>
+          <select class="form-select">
+            <option selected>Выберите принтер</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
         </div>
-      </div>
+      </form>
     </template>
     <template v-slot:footer>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Принять</button>
-      </div>
+      <button type="button" class="btn btn-primary">Установить</button>
     </template>
   </AppModalDialog>
 </template>
