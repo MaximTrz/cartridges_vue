@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import MainPage from "../views/MainPage.vue";
-import AddTable from "../views/AddTable.vue";
+import AddTable from "../components/AddTable.vue";
+// eslint-disable-next-line no-unused-vars
 import BooksList from "../views/Books-list.vue";
+import Books from "../views/Books.vue";
 
 const routes = [
   {
@@ -17,9 +19,9 @@ const routes = [
   },
 
   {
-    path: "/books-list",
+    path: "/books",
     name: "books",
-    component: BooksList,
+    component: Books,
   },
 
   {
@@ -29,7 +31,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AddTable.vue"),
+      import(/* webpackChunkName: "about" */ "../components/AddTable.vue"),
   },
 ];
 
