@@ -124,14 +124,15 @@ export default {
   },
   methods: {
     addItem() {
-      this.tableItems.push(this.findItem());
+      const item = this.findItemById(this.selectedHeadItem);
+      this.tableItems.push(item);
     },
     findElement(arr, elem) {
       const item = arr.find((item) => item.id == elem);
-      return item;
+      return { ...item };
     },
-    findItem() {
-      const item = this.findElement(this.items, this.selectedHeadItem);
+    findItemById(id) {
+      const item = this.findElement(this.items, id);
       return { ...item };
     },
     findIndexById(arr, elem) {
