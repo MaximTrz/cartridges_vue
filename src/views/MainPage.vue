@@ -23,7 +23,9 @@
     </ul>
     <ul class="main__list">
       <li class="main__item --cartridges">
-        <a class="main__link" href="#">Добавить заправку</a>
+        <RouterLink :to="{ name: 'addRefil' }" class="main__link" href="#"
+          >Добавить заправку</RouterLink
+        >
       </li>
       <li class="main__item --repair-cartridges">
         <a class="main__link" href="#">Добавить ремонт картриджа</a>
