@@ -3,7 +3,7 @@
   <div class="addForm">
     <div class="input-group">
       <select class="form-select" v-model="selectedHeadItem">
-        <option value="0" selected>
+        <option :value="null" selected>
           <slot name="itemName"> Выберите элемент </slot>
         </option>
         <template v-if="items.length > 0">
@@ -12,7 +12,12 @@
           </option>
         </template>
       </select>
-      <button class="btn btn-outline-secondary" type="button" @click="addItem">
+      <button
+        class="btn btn-outline-secondary"
+        type="button"
+        @click="addItem"
+        :disabled="activeAddItem"
+      >
         Добавить
       </button>
     </div>
@@ -20,7 +25,7 @@
   <div class="addForm">
     <div class="input-group">
       <select class="form-select" v-model="selectedAction">
-        <option selected>Выберите действие</option>
+        <option :value="null" selected>Выберите действие</option>
         <template v-if="actionList.length > 0">
           <option
             v-for="action in actionList"
@@ -34,6 +39,7 @@
       <button
         class="btn btn-outline-secondary"
         type="button"
+        :disabled="activeAddAction"
         @click="addAction"
       >
         Добавить действие
@@ -161,6 +167,14 @@ export default {
       item.actions = item.actions.filter((elem) => elem != action);
     },
   },
+  computed: {
+    activeAddItem: function () {
+      return this.selectedHeadItem == null;
+    },
+    activeAddAction: function () {
+      return this.selectedAction == null || this.selectedTableItem == null;
+    },
+  },
 };
 </script>
 
@@ -185,5 +199,8 @@ export default {
 <style scoped>
 .selected {
   border: 2px solid darkgrey;
+}
+.addForm {
+  margin-bottom: 15px;
 }
 </style>
