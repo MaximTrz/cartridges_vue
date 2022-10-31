@@ -61,14 +61,14 @@
     <template v-if="tableItems.length > 0">
       <tbody>
         <tr
-          v-for="item in tableItems"
+          v-for="(item, index) in tableItems"
           :key="item.id"
           @click="selectedTableItem = item"
           :class="{
             selected: selectedTableItem == item,
           }"
         >
-          <th scope="row">1</th>
+          <th scope="row">{{ index + 1 }}</th>
           <td>
             <a class="table_link" href="#">{{ item.id }}</a>
           </td>
@@ -131,10 +131,12 @@ export default {
   methods: {
     addItem() {
       const item = this.findItemById(this.selectedHeadItem);
+      item.actions = [];
+      this.selectedTableItem = item;
       this.tableItems.push(item);
     },
-    findElement(arr, elem) {
-      const item = arr.find((item) => item.id == elem);
+    findElement(arr, id) {
+      const item = arr.find((item) => item.id == id);
       return { ...item };
     },
     findItemById(id) {
@@ -158,21 +160,39 @@ export default {
       this.tableItems[indexItem].actions.push(this.actionList[actionItemIndex]);
     },
     deleteItem(item) {
-      this.tableItems = this.tableItems.filter((elem) => elem != item);
-      if (item == this.selectedTableItem) {
-        this.selectedTableItem = null;
-      }
+      this.tableItems = [...this.tableItems.filter((elem) => elem != item)];
+      this.selectedTableItem = null;
     },
     deleteAction(item, action) {
       item.actions = item.actions.filter((elem) => elem != action);
     },
   },
   computed: {
+    checkDoubleItems: function () {
+      let selItem = this.findItemById(this.selectedHeadItem);
+      return this.findIndexById(this.tableItems, selItem.id) > -1;
+    },
+    checkDoubleActions: function () {
+      if (this.selectedTableItem) {
+        return (
+          this.findIndexById(
+            this.selectedTableItem.actions,
+            this.selectedAction
+          ) > -1
+        );
+      }
+
+      return false;
+    },
     activeAddItem: function () {
-      return this.selectedHeadItem == null;
+      return this.selectedHeadItem == null || this.checkDoubleItems;
     },
     activeAddAction: function () {
-      return this.selectedAction == null || this.selectedTableItem == null;
+      return (
+        this.selectedAction == null ||
+        this.selectedTableItem == null ||
+        this.checkDoubleActions
+      );
     },
   },
 };
