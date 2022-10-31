@@ -223,4 +223,7 @@ export default {
 .addForm {
   margin-bottom: 15px;
 }
+h2 {
+  margin-bottom: 20px;
+}
 </style>

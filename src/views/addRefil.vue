@@ -1,11 +1,11 @@
 <template>
-  <AppAddTable title="Добавить" :items="cartridgies" :actionList="actionList">
+  <AppAddTable :title="title" :items="cartridgies" :actionList="actionList">
     <template slot:tableHead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Номер картриджа</th>
         <th scope="col">Модель</th>
-        <th scope="col">Ремонт</th>
+        <th scope="col">Действие</th>
         <th scope="col"></th>
       </tr>
     </template>
