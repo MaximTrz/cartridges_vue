@@ -5,6 +5,7 @@ import AppAddTable from "../components/AppAddTable.vue";
 import BooksList from "../views/Books-list.vue";
 import Books from "../views/Books.vue";
 import AppAddRefil from "../views/addRefil.vue";
+import AppAddRepair from "../views/addRepair.vue";
 
 const routes = [
   {
@@ -23,6 +24,12 @@ const routes = [
     path: "/add-refil",
     name: "addRefil",
     component: AppAddRefil,
+  },
+
+  {
+    path: "/add-printer-repair",
+    name: "addPrinterRepair",
+    component: AppAddRepair,
   },
 
   {

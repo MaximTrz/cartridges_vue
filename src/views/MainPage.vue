@@ -27,11 +27,16 @@
           >Добавить заправку</RouterLink
         >
       </li>
-      <li class="main__item --repair-cartridges">
+      <!-- <li class="main__item --repair-cartridges">
         <a class="main__link" href="#">Добавить ремонт картриджа</a>
-      </li>
+      </li> -->
       <li class="main__item --repair-printer">
-        <a class="main__link" href="#">Добавить ремонт принтер</a>
+        <RouterLink
+          :to="{ name: 'addPrinterRepair' }"
+          class="main__link"
+          href="#"
+          >Добавить ремонт принтера</RouterLink
+        >
       </li>
     </ul>
   </div>

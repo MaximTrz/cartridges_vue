@@ -1,6 +1,6 @@
 <template>
   <AppAddTable :title="title" :items="cartridgies" :actionList="actionList">
-    <template slot:tableHead>
+    <template v-slot:tableHead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Номер картриджа</th>

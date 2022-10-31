@@ -8,7 +8,7 @@
         </option>
         <template v-if="items.length > 0">
           <option v-for="item in items" :value="item.id" :key="item.name">
-            {{ item.name }}
+            {{ `№${item.id}  ${item.name}` }}
           </option>
         </template>
       </select>
