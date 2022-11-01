@@ -22,41 +22,15 @@
       </button>
     </div>
   </div>
-  <slot name="formAddActions">
-    <div class="addForm">
-      <div class="input-group">
-        <select class="form-select" v-model="selectedAction">
-          <option :value="null" selected>Выберите действие</option>
-          <template v-if="actionList.length > 0">
-            <option
-              v-for="action in actionList"
-              :value="action.id"
-              :key="action.id"
-            >
-              {{ action.name }}
-            </option>
-          </template>
-        </select>
-        <button
-          class="btn btn-outline-secondary"
-          type="button"
-          :disabled="activeAddAction"
-          @click="addAction"
-        >
-          Добавить действие
-        </button>
-      </div>
-    </div>
-  </slot>
+  <slot name="formAddActions"> </slot>
   <slot>
     <table class="table">
       <thead>
         <slot name="tableHead">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Номер картриджа</th>
-            <th scope="col">Модель</th>
-            <th scope="col">Действие</th>
+            <th scope="col">Идентификатор</th>
+            <th scope="col">Наименование</th>
             <th scope="col"></th>
           </tr>
         </slot>
@@ -77,22 +51,6 @@
             </td>
             <td>
               <a class="table_link" href="#"> {{ item.name }}</a>
-            </td>
-            <td>
-              <template v-if="item.actions.length > 0">
-                <div
-                  v-for="repair in item.actions"
-                  class="repair"
-                  :key="repair.id"
-                >
-                  {{ repair.name }}
-                  <span
-                    class="repair__del"
-                    @click.stop="deleteAction(item, repair)"
-                    >X</span
-                  >
-                </div>
-              </template>
             </td>
             <td>
               <button class="btn btn-danger" @click.stop="deleteItem(item)">
@@ -118,87 +76,17 @@ export default {
     title: String,
     items: Array,
     actionList: Array,
-    // author: Object,
-    // callback: Function,
   },
   data() {
     return {
       selectedHeadItem: null,
       selectedTableItem: null,
       selectedAction: null,
-      tableItems: [
-        { id: 998, name: "HP 1160", actions: [] },
-        { id: 999, name: "HP 1150", actions: [] },
-      ],
+      tableItems: [],
     };
   },
-  methods: {
-    addItem() {
-      const item = this.findItemById(this.selectedHeadItem);
-      item.actions = [];
-      this.selectedTableItem = item;
-      this.tableItems.push(item);
-    },
-    findElement(arr, id) {
-      const item = arr.find((item) => item.id == id);
-      return { ...item };
-    },
-    findItemById(id) {
-      const item = this.findElement(this.items, id);
-      return { ...item };
-    },
-    findIndexById(arr, elem) {
-      const itemIndex = arr.findIndex((item) => item.id == elem);
-      return itemIndex;
-    },
-    addAction() {
-      let indexItem = this.findIndexById(
-        this.tableItems,
-        this.selectedTableItem.id
-      );
-      const actionItemIndex = this.findIndexById(
-        this.actionList,
-        this.selectedAction
-      );
-
-      this.tableItems[indexItem].actions.push(this.actionList[actionItemIndex]);
-    },
-    deleteItem(item) {
-      this.tableItems = [...this.tableItems.filter((elem) => elem != item)];
-      this.selectedTableItem = null;
-    },
-    deleteAction(item, action) {
-      item.actions = item.actions.filter((elem) => elem != action);
-    },
-  },
-  computed: {
-    checkDoubleItems: function () {
-      let selItem = this.findItemById(this.selectedHeadItem);
-      return this.findIndexById(this.tableItems, selItem.id) > -1;
-    },
-    checkDoubleActions: function () {
-      if (this.selectedTableItem) {
-        return (
-          this.findIndexById(
-            this.selectedTableItem.actions,
-            this.selectedAction
-          ) > -1
-        );
-      }
-
-      return false;
-    },
-    activeAddItem: function () {
-      return this.selectedHeadItem == null || this.checkDoubleItems;
-    },
-    activeAddAction: function () {
-      return (
-        this.selectedAction == null ||
-        this.selectedTableItem == null ||
-        this.checkDoubleActions
-      );
-    },
-  },
+  methods: {},
+  computed: {},
 };
 </script>
 
