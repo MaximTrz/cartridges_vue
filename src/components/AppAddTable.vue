@@ -22,84 +22,88 @@
       </button>
     </div>
   </div>
-  <div class="addForm">
-    <div class="input-group">
-      <select class="form-select" v-model="selectedAction">
-        <option :value="null" selected>Выберите действие</option>
-        <template v-if="actionList.length > 0">
-          <option
-            v-for="action in actionList"
-            :value="action.id"
-            :key="action.id"
-          >
-            {{ action.name }}
-          </option>
-        </template>
-      </select>
-      <button
-        class="btn btn-outline-secondary"
-        type="button"
-        :disabled="activeAddAction"
-        @click="addAction"
-      >
-        Добавить действие
-      </button>
-    </div>
-  </div>
-  <table class="table">
-    <thead>
-      <slot name="tableHead">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Номер картриджа</th>
-          <th scope="col">Модель</th>
-          <th scope="col">Действие</th>
-          <th scope="col"></th>
-        </tr>
-      </slot>
-    </thead>
-    <template v-if="tableItems.length > 0">
-      <tbody>
-        <tr
-          v-for="(item, index) in tableItems"
-          :key="item.id"
-          @click="selectedTableItem = item"
-          :class="{
-            selected: selectedTableItem == item,
-          }"
+  <slot name="formAddActions">
+    <div class="addForm">
+      <div class="input-group">
+        <select class="form-select" v-model="selectedAction">
+          <option :value="null" selected>Выберите действие</option>
+          <template v-if="actionList.length > 0">
+            <option
+              v-for="action in actionList"
+              :value="action.id"
+              :key="action.id"
+            >
+              {{ action.name }}
+            </option>
+          </template>
+        </select>
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          :disabled="activeAddAction"
+          @click="addAction"
         >
-          <th scope="row">{{ index + 1 }}</th>
-          <td>
-            <a class="table_link" href="#">{{ item.id }}</a>
-          </td>
-          <td>
-            <a class="table_link" href="#"> {{ item.name }}</a>
-          </td>
-          <td>
-            <template v-if="item.actions.length > 0">
-              <div
-                v-for="repair in item.actions"
-                class="repair"
-                :key="repair.id"
-              >
-                {{ repair.name }}
-                <span
-                  class="repair__del"
-                  @click.stop="deleteAction(item, repair)"
-                  >X</span
+          Добавить действие
+        </button>
+      </div>
+    </div>
+  </slot>
+  <slot>
+    <table class="table">
+      <thead>
+        <slot name="tableHead">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Номер картриджа</th>
+            <th scope="col">Модель</th>
+            <th scope="col">Действие</th>
+            <th scope="col"></th>
+          </tr>
+        </slot>
+      </thead>
+      <template v-if="tableItems.length > 0">
+        <tbody>
+          <tr
+            v-for="(item, index) in tableItems"
+            :key="item.id"
+            @click="selectedTableItem = item"
+            :class="{
+              selected: selectedTableItem == item,
+            }"
+          >
+            <th scope="row">{{ index + 1 }}</th>
+            <td>
+              <a class="table_link" href="#">{{ item.id }}</a>
+            </td>
+            <td>
+              <a class="table_link" href="#"> {{ item.name }}</a>
+            </td>
+            <td>
+              <template v-if="item.actions.length > 0">
+                <div
+                  v-for="repair in item.actions"
+                  class="repair"
+                  :key="repair.id"
                 >
-              </div>
-            </template>
-          </td>
-          <td>
-            <button class="btn btn-danger" @click.stop="deleteItem(item)">
-              X
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </template>
-  </table>
+                  {{ repair.name }}
+                  <span
+                    class="repair__del"
+                    @click.stop="deleteAction(item, repair)"
+                    >X</span
+                  >
+                </div>
+              </template>
+            </td>
+            <td>
+              <button class="btn btn-danger" @click.stop="deleteItem(item)">
+                X
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </template>
+    </table>
+  </slot>
   <div class="save">
     <button class="btn btn-outline-success btn-lg" type="button">
       Сохранить

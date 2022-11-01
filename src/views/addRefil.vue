@@ -1,5 +1,31 @@
 <template>
   <AppAddTable :title="title" :items="cartridgies" :actionList="actionList">
+    <template v-slot:formAddActions>
+      <div class="addForm">
+        <div class="input-group">
+          <select class="form-select" v-model="selectedAction">
+            <option :value="null" selected>Выберите действие</option>
+            <template v-if="actionList.length > 0">
+              <option
+                v-for="action in actionList"
+                :value="action.id"
+                :key="action.id"
+              >
+                {{ action.name }}
+              </option>
+            </template>
+          </select>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            :disabled="activeAddAction"
+            @click="addAction"
+          >
+            Добавить действие
+          </button>
+        </div>
+      </div>
+    </template>
     <template v-slot:tableHead>
       <tr>
         <th scope="col">#</th>
