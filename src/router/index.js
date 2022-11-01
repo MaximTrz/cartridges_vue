@@ -6,6 +6,7 @@ import BooksList from "../views/Books-list.vue";
 import Books from "../views/Books.vue";
 import AppAddRefil from "../views/addRefil.vue";
 import AppAddRepair from "../views/addRepair.vue";
+import AppSendToService from "../views/sendToService.vue";
 
 const routes = [
   {
@@ -30,6 +31,12 @@ const routes = [
     path: "/add-printer-repair",
     name: "addPrinterRepair",
     component: AppAddRepair,
+  },
+
+  {
+    path: "/send-to-servie",
+    name: "sendToService",
+    component: AppSendToService,
   },
 
   {

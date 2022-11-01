@@ -10,7 +10,9 @@
         </div>
       </li>
       <li class="main-action__item --send">
-        <div class="main-action__link">Отправить в СЦ</div>
+        <RouterLink :to="{ name: 'sendToService' }" class="main-action__link"
+          >Отправить в СЦ</RouterLink
+        >
       </li>
       <li class="main-action__item --install">
         <div
