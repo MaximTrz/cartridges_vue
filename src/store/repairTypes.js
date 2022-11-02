@@ -12,7 +12,7 @@ export default {
       { id: 3, name: "Резинового вала" },
     ],
   },
-  gettets: {
+  getters: {
     cartridgeRepairTypes: (state) => state.cartridgeRepairTypes,
     printerRepairTypes: (state) => state.printerRepairTypes,
   },
