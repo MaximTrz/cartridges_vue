@@ -22,7 +22,7 @@
       </button>
     </div>
   </div>
-  <table class="table">
+  <table class="table" v-if="tableItems.length > 0">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -31,7 +31,7 @@
         <th scope="col"></th>
       </tr>
     </thead>
-    <tbody v-if="tableItems.length > 0">
+    <tbody>
       <tr v-for="(item, index) in tableItems" :key="item.id">
         <th scope="row">{{ index + 1 }}</th>
         <td>
@@ -46,7 +46,7 @@
       </tr>
     </tbody>
   </table>
-  <div class="save">
+  <div class="save" v-if="tableItems.length > 0">
     <button
       class="btn btn-outline-success btn-lg"
       type="button"
