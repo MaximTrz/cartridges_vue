@@ -12,23 +12,44 @@
         <th scope="col">#</th>
         <th scope="col">Номер</th>
         <th scope="col">Наименование</th>
-        <th scope="col">Текущий отдел</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td><a class="table_link" href="#">5</a></td>
-        <td><a class="table_link" href="#">HP LaserJet</a></td>
-        <td><a class="table_link" href="#">Бюджетный</a></td>
+      <tr v-for="(item, index) in items" :key="item.id">
+        <th scope="row">{{ index + 1 }}</th>
+        <td>
+          <a class="table_link" href="#">{{ item.id }}</a>
+        </td>
+        <td>
+          <a class="table_link" href="#">{{ item.name }}</a>
+        </td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  name: "Books-list",
+  name: "BookItemsList",
+  mounted: function () {
+    const book = this.$route.params.bookname;
+    const items = this[book];
+    if (typeof items != "undefined") {
+      this.items = items;
+      this.bookName = book;
+    }
+  },
+  data: function () {
+    return {
+      bookName: "",
+      items: [],
+    };
+  },
+  computed: {
+    ...mapGetters("books", ["printers", "cartridgies", "groups"]),
+  },
 };
 </script>
 

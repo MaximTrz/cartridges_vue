@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 import modals from "./modals";
-import equipment from "./equipment";
+import books from "./books";
 import repairTypes from "./repairTypes";
 
 export default createStore({
@@ -8,6 +8,6 @@ export default createStore({
   getters: {},
   mutations: {},
   actions: {},
-  modules: { modals, equipment, repairTypes },
+  modules: { modals, books, repairTypes },
   strict: process.env.NODE_ENV !== "production",
 });

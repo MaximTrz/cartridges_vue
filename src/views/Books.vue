@@ -25,7 +25,7 @@
     <div class="books-item">
       <div class="card">
         <RouterLink
-          :to="{ name: 'bookItemsList', params: { bookname: 'group' } }"
+          :to="{ name: 'bookItemsList', params: { bookname: 'groups' } }"
         >
           <div class="card-body">
             <h5 class="card-title">Отделы</h5>

@@ -13,9 +13,16 @@ export default {
       { id: 3, name: "HP 48x", status: "1" },
       { id: 4, name: "HP 67n", status: "1" },
     ],
+    groups: [
+      { id: 1, name: "Операционно-кассовый" },
+      { id: 2, name: "Бюджетный" },
+      { id: 3, name: "Контрольно-ревизионный" },
+      { id: 4, name: "Отдел информационных технологий" },
+    ],
   },
   getters: {
-    priners: (state) => state.priners,
+    printers: (state) => state.printers,
     cartridgies: (state) => state.cartridgies,
+    groups: (state) => state.groups,
   },
 };
