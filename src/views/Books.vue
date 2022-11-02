@@ -2,28 +2,34 @@
   <div class="books">
     <div class="books-item">
       <div class="card">
-        <a href="#">
+        <RouterLink
+          :to="{ name: 'bookItemsList', params: { bookname: 'cartridgies' } }"
+        >
           <div class="card-body">
             <h5 class="card-title">Картриджи</h5>
-          </div></a
+          </div></RouterLink
         >
       </div>
     </div>
     <div class="books-item">
       <div class="card">
-        <a href="#">
+        <RouterLink
+          :to="{ name: 'bookItemsList', params: { bookname: 'printers' } }"
+        >
           <div class="card-body">
             <h5 class="card-title">Принтеры</h5>
-          </div></a
+          </div></RouterLink
         >
       </div>
     </div>
     <div class="books-item">
       <div class="card">
-        <a href="#">
+        <RouterLink
+          :to="{ name: 'bookItemsList', params: { bookname: 'group' } }"
+        >
           <div class="card-body">
             <h5 class="card-title">Отделы</h5>
-          </div></a
+          </div></RouterLink
         >
       </div>
     </div>

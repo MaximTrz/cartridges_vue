@@ -1,12 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import MainPage from "../views/MainPage.vue";
 import AppAddTable from "../components/AppAddTable.vue";
-// eslint-disable-next-line no-unused-vars
-import BooksList from "../views/Books-list.vue";
 import Books from "../views/Books.vue";
 import AppAddRefil from "../views/addRefil.vue";
 import AppAddRepair from "../views/addRepair.vue";
 import AppSendToService from "../views/sendToService.vue";
+import AppBookItemsList from "../views/AppBookItemsList";
 
 const routes = [
   {
@@ -43,6 +42,12 @@ const routes = [
     path: "/books",
     name: "books",
     component: Books,
+  },
+
+  {
+    path: "/book-items-list/:bookname",
+    name: "bookItemsList",
+    component: AppBookItemsList,
   },
 
   {
