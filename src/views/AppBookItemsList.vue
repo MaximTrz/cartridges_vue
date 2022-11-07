@@ -12,6 +12,7 @@
         <th scope="col">#</th>
         <th scope="col">Номер</th>
         <th scope="col">Наименование</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +23,9 @@
         </td>
         <td>
           <a class="table_link" href="#">{{ item.name }}</a>
+        </td>
+        <td>
+          <button class="btn btn-danger">X</button>
         </td>
       </tr>
     </tbody>
