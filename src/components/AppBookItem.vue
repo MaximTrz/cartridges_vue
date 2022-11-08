@@ -1,19 +1,26 @@
 <template>
   <div class="book-item">
-    <div class="book-item__badge">
-      <h2 class="book-item__title">№5 Наименование</h2>
-      <div class="book-item__user">Медникова</div>
-      <div class="book-item__group">Операционно-кассовый</div>
-    </div>
+    <slot name="head">
+      <div class="book-item__badge">
+        <h3 class="book-item__title">{{ title }}</h3>
+        <div class="book-item__group">{{ subTitle }}</div>
+      </div>
+    </slot>
     <slot name="install">
       <div class="book-item__form-wrapper">
         <form class="install">
           <div class="input-group">
-            <select class="form-select">
-              <option selected>Выберите принтер</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+            <select class="form-select" v-model="selectedItem">
+              <option :value="null" selected>Выберите элемент</option>
+              <template v-if="actionList.length > 0">
+                <option
+                  v-for="item in actionList"
+                  :value="item.id"
+                  :key="item.id"
+                >
+                  {{ item.name }}
+                </option>
+              </template>
             </select>
             <button type="button" class="btn btn-primary">Установить</button>
           </div>
@@ -32,5 +39,27 @@ export default {
     subTitle: String,
     actionList: Array,
   },
+  data: function () {
+    return {
+      selectedItem: null,
+    };
+  },
 };
 </script>
+
+<style lang="scss">
+.book-item {
+  &__badge {
+    margin-bottom: 30px;
+  }
+  &__title {
+    padding-bottom: 15px;
+  }
+  &__form-wrapper {
+    margin-bottom: 80px;
+  }
+  &__group {
+    font-size: 24px;
+  }
+}
+</style>

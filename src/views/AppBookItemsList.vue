@@ -19,10 +19,14 @@
       <tr v-for="(item, index) in items" :key="item.id">
         <th scope="row">{{ index + 1 }}</th>
         <td>
-          <a class="table_link" href="#">{{ item.id }}</a>
+          <span class="table_link">{{ item.id }}</span>
         </td>
         <td>
-          <a class="table_link" href="#">{{ item.name }}</a>
+          <RouterLink
+            :to="{ name: routeName, params: { id: item.id } }"
+            class="table_link"
+            >{{ item.name }}</RouterLink
+          >
         </td>
         <td>
           <button class="btn btn-danger">X</button>
@@ -53,6 +57,9 @@ export default {
   },
   computed: {
     ...mapGetters("books", ["printers", "cartridgies", "groups"]),
+    routeName: function () {
+      return this.bookName;
+    },
   },
 };
 </script>

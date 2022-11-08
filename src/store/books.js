@@ -24,5 +24,8 @@ export default {
     printers: (state) => state.printers,
     cartridgies: (state) => state.cartridgies,
     groups: (state) => state.groups,
+    findItemById: (state) => (bookName, id) => {
+      return state[bookName].find((elem) => elem.id == id);
+    },
   },
 };

@@ -6,6 +6,9 @@ import AppAddRefil from "../views/addRefil.vue";
 import AppAddRepair from "../views/addRepair.vue";
 import AppSendToService from "../views/sendToService.vue";
 import AppBookItemsList from "../views/AppBookItemsList";
+import AppBookCartridge from "../views/bookItem/AppBookCartridge.vue";
+import AppBookPrinter from "../views/bookItem/AppBookPrinter";
+import AppBookGroup from "../views/bookItem/AppBookGroup";
 
 const routes = [
   {
@@ -48,6 +51,24 @@ const routes = [
     path: "/book-items-list/:bookname",
     name: "bookItemsList",
     component: AppBookItemsList,
+  },
+
+  {
+    path: "/cartridge/:id",
+    name: "cartridgies",
+    component: AppBookCartridge,
+  },
+
+  {
+    path: "/printer/:id",
+    name: "printers",
+    component: AppBookPrinter,
+  },
+
+  {
+    path: "/group/:id",
+    name: "groups",
+    component: AppBookGroup,
   },
 
   {
