@@ -9,6 +9,8 @@ import AppBookItemsList from "../views/AppBookItemsList";
 import AppBookCartridge from "../views/bookItem/AppBookCartridge.vue";
 import AppBookPrinter from "../views/bookItem/AppBookPrinter";
 import AppBookGroup from "../views/bookItem/AppBookGroup";
+import AppRefill from "../views/AppRefill.vue";
+import AppRepairs from "../views/AppRepairs";
 
 const routes = [
   {
@@ -69,6 +71,18 @@ const routes = [
     path: "/group/:id",
     name: "groups",
     component: AppBookGroup,
+  },
+
+  {
+    path: "/repairs",
+    name: "repairs",
+    component: AppRepairs,
+  },
+
+  {
+    path: "/refill",
+    name: "refills",
+    component: AppRefill,
   },
 
   {

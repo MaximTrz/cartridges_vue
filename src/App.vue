@@ -1,13 +1,16 @@
 <template>
   <header class="header">
     <span class="fs-4"
-      ><a class="text-dark text-decoration-none" href="#"
-        >Управление оргтехникой</a
+      ><RouterLink :to="{ name: 'home' }" class="text-dark text-decoration-none"
+        >Управление оргтехникой</RouterLink
       ></span
     >
     <nav class="header-nav">
-      <a class="header-nav__link" href="#" target="_blank">Заправки</a
-      ><a class="header-nav__link" href="#" target="_blank">Ремонты</a>
+      <RouterLink :to="{ name: 'refills' }" class="header-nav__link"
+        >Заправки</RouterLink
+      ><RouterLink :to="{ name: 'repairs' }" class="header-nav__link"
+        >Ремонты</RouterLink
+      >
       <router-link :to="{ name: 'books' }" class="header-nav__link">
         Справочники
       </router-link>
@@ -100,5 +103,16 @@ $base-color: #602668;
       color: #fff;
     }
   }
+}
+
+.filter {
+  &__group {
+    margin-bottom: 20px;
+  }
+  &__submit {
+    display: flex;
+    justify-content: flex-end;
+  }
+  margin-bottom: 50px;
 }
 </style>
