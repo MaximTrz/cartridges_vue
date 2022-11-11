@@ -42,6 +42,10 @@ import { mapGetters } from "vuex";
 export default {
   name: "BookItemsList",
   mounted: function () {
+    this.$store.getters.apiService.getAllСartridges().then((res) => {
+      console.log(res);
+    });
+
     const book = this.$route.params.bookname;
     const items = this[book];
     if (typeof items != "undefined") {

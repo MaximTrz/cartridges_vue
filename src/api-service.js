@@ -1,5 +1,6 @@
-export default class ApiServie {
-  _apiBase = "http://swapi.co/api'";
+export default class ApiService {
+  _apiBase = "http://cartridges/api";
+
   getResource = async (url) => {
     const res = await fetch(`${this._apiBase}${url}`);
     if (!res.ok) {
@@ -7,6 +8,7 @@ export default class ApiServie {
     }
     return await res.json();
   };
+
   performAction = async (url, method, data) => {
     const res = await fetch(`${this._apiBase}${url}`, {
       method,
@@ -20,8 +22,9 @@ export default class ApiServie {
 
   getAllСartridges = async () => {
     const res = await this.getResource("/cartridge/");
-    return res.results;
+    return res;
   };
+
   getCartridge = async (id) => {
     const res = await this.getResource(`/cartridge/${id}`);
     return res.results;
