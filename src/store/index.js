@@ -4,9 +4,11 @@ import books from "./books";
 import repairTypes from "./repairTypes";
 import ApiService from "@/api-service";
 
+const apiService = new ApiService();
+
 export default createStore({
   state: {
-    apiService: new ApiService(),
+    apiService,
   },
   getters: {
     apiService: function (state) {
