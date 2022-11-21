@@ -6,11 +6,7 @@
         <option :value="null" selected>
           <slot name="itemName"> Выберите элемент </slot>
         </option>
-        <template v-if="items.length > 0">
-          <option v-for="item in items" :value="item.id" :key="item.name">
-            {{ `№${item.id}  ${item.name}` }}
-          </option>
-        </template>
+        <AppOptionsList :list="items"></AppOptionsList>
       </select>
       <button
         class="btn btn-outline-secondary"
@@ -101,15 +97,22 @@
     </template>
   </table>
   <div class="save">
-    <button class="btn btn-outline-success btn-lg" type="button">
+    <button
+      :disabled="!activeSave"
+      class="btn btn-outline-success btn-lg"
+      type="button"
+    >
       Сохранить
     </button>
   </div>
 </template>
 
 <script>
+import AppOptionsList from "./AppOptionsList.vue";
+
 export default {
   name: "AppAddTable",
+  components: { AppOptionsList },
   props: {
     title: String,
     items: Array,
@@ -122,10 +125,7 @@ export default {
       selectedHeadItem: null,
       selectedTableItem: null,
       selectedAction: null,
-      tableItems: [
-        { id: 998, name: "HP 1160", actions: [] },
-        { id: 999, name: "HP 1150", actions: [] },
-      ],
+      tableItems: [],
     };
   },
   methods: {
@@ -156,7 +156,6 @@ export default {
         this.actionList,
         this.selectedAction
       );
-
       this.tableItems[indexItem].actions.push(this.actionList[actionItemIndex]);
     },
     deleteItem(item) {
@@ -181,7 +180,6 @@ export default {
           ) > -1
         );
       }
-
       return false;
     },
     activeAddItem: function () {
@@ -193,6 +191,14 @@ export default {
         this.selectedTableItem == null ||
         this.checkDoubleActions
       );
+    },
+    actionsAdded: function () {
+      return Object.values(this.tableItems).every(
+        (val) => val.actions.length > 0
+      );
+    },
+    activeSave: function () {
+      return (this.tableItems.length > 0) & this.actionsAdded;
     },
   },
 };

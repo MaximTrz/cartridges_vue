@@ -7,9 +7,7 @@
         <div class="modal-body">
           <select class="form-select">
             <option selected>Выберите картридж</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <AppOptionsList :list="cartridgies"></AppOptionsList>
           </select>
         </div>
       </div>
@@ -23,11 +21,17 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import AppModalDialog from "./AppModalDialog.vue";
+import AppOptionsList from "../AppOptionsList.vue";
 export default {
   name: "AppModalSetCartridge",
   components: {
     AppModalDialog,
+    AppOptionsList,
+  },
+  computed: {
+    ...mapGetters("books", ["cartridgies"]),
   },
 };
 </script>

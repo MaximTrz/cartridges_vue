@@ -6,11 +6,7 @@
         <option :value="null" selected>
           <slot name="itemName"> Выберите элемент </slot>
         </option>
-        <template v-if="items.length > 0">
-          <option v-for="item in items" :value="item.id" :key="item.id">
-            {{ item.name }}
-          </option>
-        </template>
+        <AppOptionsList :list="cartridgies"> </AppOptionsList>
       </select>
       <button
         class="btn btn-outline-secondary"
@@ -58,15 +54,19 @@
 </template>
 
 <script>
+import AppOptionsList from "@/components/AppOptionsList.vue";
+import { mapGetters } from "vuex";
 export default {
   name: "sendToService",
+  mounted: function () {
+    this.items = this.$store.getters["books/cartridgies"];
+  },
+  components: {
+    AppOptionsList,
+  },
   data: function () {
     return {
-      items: [
-        { id: 1, name: "Cactus 505" },
-        { id: 2, name: "Cactus 48X" },
-        { id: 3, name: "Cactus 055" },
-      ],
+      items: [],
       selectedHeadItem: null,
       slelectedTableItem: null,
       tableItems: [],
@@ -94,6 +94,7 @@ export default {
     saveActive: function () {
       return !this.tableItems.length > 0;
     },
+    ...mapGetters("books", ["cartridgies"]),
   },
 };
 </script>

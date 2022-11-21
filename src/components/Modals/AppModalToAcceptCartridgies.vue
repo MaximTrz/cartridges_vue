@@ -6,9 +6,7 @@
         <div class="input-group">
           <select class="form-select">
             <option selected>Выберите картридж</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <AppOptionsList :list="cartridgies"></AppOptionsList>
           </select>
           <select class="form-select">
             <option selected>Выберите принтер</option>
@@ -27,9 +25,14 @@
 
 <script>
 import AppModalDialog from "./AppModalDialog.vue";
+import { mapGetters } from "vuex";
+import AppOptionsList from "../AppOptionsList.vue";
 
 export default {
   name: "AppModalToAcceptCartridgies",
-  components: { AppModalDialog },
+  components: { AppModalDialog, AppOptionsList },
+  computed: {
+    ...mapGetters("books", ["cartridgies"]),
+  },
 };
 </script>

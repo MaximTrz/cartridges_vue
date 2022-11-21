@@ -15,22 +15,27 @@
 import AppAddTable from "../components/AppAddTable.vue";
 export default {
   name: "AppAddRefil",
+  mounted: function () {
+    this.cartridgies = this.cartridgesList;
+  },
   components: {
     AppAddTable,
   },
   data: function () {
     return {
       title: "Добавить заправку",
-      cartridgies: [
-        { id: 1, name: "Cactus 505", actions: [] },
-        { id: 2, name: "HP 48x", actions: [] },
-      ],
+      cartridgies: [],
       actionList: [
         { id: 1, name: "Заправка" },
         { id: 2, name: "Замена барабана" },
         { id: 3, name: "Замена ракеля" },
       ],
     };
+  },
+  computed: {
+    cartridgesList: function () {
+      return this.$store.getters["books/cartridgies"];
+    },
   },
 };
 </script>
