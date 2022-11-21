@@ -11,9 +11,7 @@ export default createStore({
     apiService,
   },
   getters: {
-    apiService: function (state) {
-      return state.apiService;
-    },
+    apiService: (state) => state.apiService,
   },
   mutations: {},
   actions: {},
