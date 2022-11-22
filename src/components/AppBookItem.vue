@@ -3,7 +3,24 @@
     <slot name="head">
       <div class="book-item__badge">
         <h3 class="book-item__title">{{ title }}</h3>
-        <div class="book-item__group">{{ subTitle }}</div>
+        <div class="book-item__group" v-if="!editMode">
+          {{ subTitle }}
+          <span class="book-item__edit" @click="changeEditMode">
+            <font-awesome-icon icon="pen-to-square" />
+          </span>
+        </div>
+        <div v-else class="input-group">
+          <span class="input-group-text">Наименование</span>
+          <input
+            :value="subTitle"
+            class="form-control"
+            type="text"
+            aria-describedby="basic-addon1"
+          />
+          <button @click="save" type="button" class="btn btn-primary">
+            Сохранить
+          </button>
+        </div>
       </div>
     </slot>
     <slot name="install">
@@ -42,7 +59,16 @@ export default {
   data: function () {
     return {
       selectedItem: null,
+      editMode: false,
     };
+  },
+  methods: {
+    changeEditMode() {
+      this.editMode = !this.editMode;
+    },
+    save() {
+      this.editMode = false;
+    },
   },
 };
 </script>
@@ -60,6 +86,9 @@ export default {
   }
   &__group {
     font-size: 24px;
+  }
+  &__edit {
+    cursor: pointer;
   }
 }
 </style>
