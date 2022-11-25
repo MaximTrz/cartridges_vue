@@ -56,7 +56,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("books", ["printers", "cartridgies", "groups"]),
+    ...mapGetters("books", ["printers", "cartridges", "groups"]),
     routeName: function () {
       return this.bookName;
     },

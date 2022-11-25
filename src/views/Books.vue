@@ -3,7 +3,7 @@
     <div class="books-item">
       <div class="card">
         <RouterLink
-          :to="{ name: 'bookItemsList', params: { bookname: 'cartridgies' } }"
+          :to="{ name: 'bookItemsList', params: { bookname: 'cartridges' } }"
         >
           <div class="card-body">
             <h5 class="card-title">Картриджи</h5>

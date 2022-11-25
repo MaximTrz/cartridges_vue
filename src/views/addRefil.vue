@@ -1,5 +1,5 @@
 <template>
-  <AppAddTable :title="title" :items="cartridgies" :actionList="actionList">
+  <AppAddTable :title="title" :items="cartridges" :actionList="actionList">
     <template v-slot:tableHead>
       <tr>
         <th scope="col">#</th>
@@ -16,7 +16,7 @@ import AppAddTable from "../components/AppAddTable.vue";
 export default {
   name: "AppAddRefil",
   mounted: function () {
-    this.cartridgies = this.cartridgesList;
+    this.cartridges = this.cartridgesList;
   },
   components: {
     AppAddTable,
@@ -24,7 +24,7 @@ export default {
   data: function () {
     return {
       title: "Добавить заправку",
-      cartridgies: [],
+      cartridges: [],
       actionList: [
         { id: 1, name: "Заправка" },
         { id: 2, name: "Замена барабана" },
@@ -34,7 +34,7 @@ export default {
   },
   computed: {
     cartridgesList: function () {
-      return this.$store.getters["books/cartridgies"];
+      return this.$store.getters["books/cartridges"];
     },
   },
 };

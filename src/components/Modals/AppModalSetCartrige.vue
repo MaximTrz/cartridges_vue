@@ -7,7 +7,7 @@
         <div class="modal-body">
           <select class="form-select">
             <option selected>Выберите картридж</option>
-            <AppOptionsList :list="cartridgies"></AppOptionsList>
+            <AppOptionsList :list="cartridges"></AppOptionsList>
           </select>
         </div>
       </div>
@@ -31,7 +31,7 @@ export default {
     AppOptionsList,
   },
   computed: {
-    ...mapGetters("books", ["cartridgies"]),
+    ...mapGetters("books", ["cartridges"]),
   },
 };
 </script>

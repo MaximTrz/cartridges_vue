@@ -57,7 +57,7 @@ const routes = [
 
   {
     path: "/cartridge/:id",
-    name: "cartridgies",
+    name: "cartridges",
     component: AppBookCartridge,
   },
 

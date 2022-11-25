@@ -6,7 +6,7 @@
         <option :value="null" selected>
           <slot name="itemName"> Выберите элемент </slot>
         </option>
-        <AppOptionsList :list="cartridgies"> </AppOptionsList>
+        <AppOptionsList :list="cartridges"> </AppOptionsList>
       </select>
       <button
         class="btn btn-outline-secondary"
@@ -59,7 +59,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "sendToService",
   mounted: function () {
-    this.items = this.$store.getters["books/cartridgies"];
+    this.items = this.$store.getters["books/cartridges"];
   },
   components: {
     AppOptionsList,
@@ -94,7 +94,7 @@ export default {
     saveActive: function () {
       return !this.tableItems.length > 0;
     },
-    ...mapGetters("books", ["cartridgies"]),
+    ...mapGetters("books", ["cartridges"]),
   },
 };
 </script>

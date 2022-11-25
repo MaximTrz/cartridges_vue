@@ -6,7 +6,7 @@
         <div class="input-group">
           <select class="form-select">
             <option selected>Выберите картридж</option>
-            <AppOptionsList :list="cartridgies"></AppOptionsList>
+            <AppOptionsList :list="cartridges"></AppOptionsList>
           </select>
           <select class="form-select">
             <option selected>Выберите принтер</option>
@@ -32,7 +32,7 @@ export default {
   name: "AppModalToAcceptCartridgies",
   components: { AppModalDialog, AppOptionsList },
   computed: {
-    ...mapGetters("books", ["cartridgies"]),
+    ...mapGetters("books", ["cartridges"]),
   },
 };
 </script>
