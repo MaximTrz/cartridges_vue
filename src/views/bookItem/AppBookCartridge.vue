@@ -16,7 +16,7 @@ export default {
       return `Картридж №${this.$route.params.id}`;
     },
     subTitle: function () {
-      return `${this.findItemById("cartridgies", this.$route.params.id).name}`;
+      return `${this.findItemById("cartridges", this.$route.params.id).name}`;
     },
   },
 };

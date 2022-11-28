@@ -1,10 +1,17 @@
 <template>
-  <form class="addForm">
+  <form class="addForm" @submit.prevent="addNewItem">
     <div class="input-group mb-3">
       <span class="input-group-text">Наименование</span>
-      <input class="form-control" type="text" aria-describedby="basic-addon1" />
+      <input
+        v-model="newItem"
+        class="form-control"
+        type="text"
+        aria-describedby="basic-addon1"
+      />
     </div>
-    <button class="btn btn-primary" type="submit">Добавить</button>
+    <button @click="addNewItem" class="btn btn-primary" type="button">
+      Добавить
+    </button>
   </form>
   <table class="table">
     <thead>
@@ -49,11 +56,21 @@ export default {
       this.bookName = book;
     }
   },
+  props: {
+    addFunction: String,
+  },
   data: function () {
     return {
       bookName: "",
       items: [],
+      newItem: "",
     };
+  },
+  methods: {
+    addNewItem: function () {
+      this.$store.dispatch(`books/${this.addFunction}`, this.newItem);
+      this.newItem = "";
+    },
   },
   computed: {
     ...mapGetters("books", ["printers", "cartridges", "groups"]),

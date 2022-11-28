@@ -17,5 +17,5 @@ store.dispatch("books/loadCartridges").then(() => {
     .mount("#app");
 });
 
-store.dispatch("books/insertCartridge", "Жопа");
-store.dispatch("books/updateCartridge", { id: 2, name: "Тоже жопа" });
+// store.dispatch("books/insertCartridge", "Жопа");
+store.dispatch("books/updateCartridge", { id: "2", name: "Тоже жопа2" });

@@ -5,7 +5,7 @@ import Books from "../views/Books.vue";
 import AppAddRefil from "../views/addRefil.vue";
 import AppAddRepair from "../views/addRepair.vue";
 import AppSendToService from "../views/sendToService.vue";
-import AppBookItemsList from "../views/AppBookItemsList";
+import AppBookSwitch from "../views/bookItemsLists/AppBookSwitch";
 import AppBookCartridge from "../views/bookItem/AppBookCartridge.vue";
 import AppBookPrinter from "../views/bookItem/AppBookPrinter";
 import AppBookGroup from "../views/bookItem/AppBookGroup";
@@ -52,7 +52,7 @@ const routes = [
   {
     path: "/book-items-list/:bookname",
     name: "bookItemsList",
-    component: AppBookItemsList,
+    component: AppBookSwitch,
   },
 
   {

@@ -20,11 +20,13 @@ export default {
       state.cartridges = cartridges;
     },
     updateCartridge(state, cartridge) {
-      const item = this.state.cartridges.find(
-        (element) => (element.id = cartridge.id)
+      const item = state.cartridges.find(
+        (element) => element.id == cartridge.id
       );
-      const idx = this.state.cartridges.indexOff(item);
-      this.state.cartridge[idx] = cartridge;
+      const idx = state.cartridges.indexOf(item);
+      if (idx > 0) {
+        state.cartridges[idx].name = cartridge.name;
+      }
     },
     addCartridge(state, cartridge) {
       state.cartridges.push(cartridge);
@@ -44,7 +46,7 @@ export default {
       this.commit("books/setCartridges", cartridges);
       // eslint-disable-next-line no-unused-vars
     },
-    async insertCartridge(context, name) {
+    async insertCartridges(context, name) {
       let res = await this.state.apiService.saveCartridge(null, {
         name,
       });
@@ -53,10 +55,11 @@ export default {
       }
     },
     async updateCartridge(context, data) {
-      let res = await this.state.apiService.saveCartridge(data.id, {
-        name: data.name,
-      });
-      console.log(res);
+      const cartridge = { id: `${data.id}`, name: data.name };
+      let res = await this.state.apiService.saveCartridge(data.id, cartridge);
+      if (res.result) {
+        context.commit("updateCartridge", cartridge);
+      }
     },
   },
 };
