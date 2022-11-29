@@ -1,5 +1,10 @@
 <template>
-  <AppBookItem :title="title" :subTitle="subTitle" :actionList="printers">
+  <AppBookItem
+    :title="title"
+    :subTitle="subTitle"
+    :actionList="printers"
+    :updateFunction="updateCartridge"
+  >
   </AppBookItem>
 </template>
 <script>

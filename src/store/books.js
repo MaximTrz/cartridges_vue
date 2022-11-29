@@ -24,12 +24,16 @@ export default {
         (element) => element.id == cartridge.id
       );
       const idx = state.cartridges.indexOf(item);
-      if (idx > 0) {
+      if (idx >= 0) {
         state.cartridges[idx].name = cartridge.name;
       }
     },
     addCartridge(state, cartridge) {
       state.cartridges.push(cartridge);
+    },
+    deleteCartridge(state, id) {
+      const newCartridges = state.cartridges.filter((item) => item.id != id);
+      state.cartridges = newCartridges;
     },
   },
   getters: {
@@ -44,7 +48,6 @@ export default {
     async loadCartridges() {
       const cartridges = await this.state.apiService.getAllСartridges();
       this.commit("books/setCartridges", cartridges);
-      // eslint-disable-next-line no-unused-vars
     },
     async insertCartridges(context, name) {
       let res = await this.state.apiService.saveCartridge(null, {
@@ -59,6 +62,12 @@ export default {
       let res = await this.state.apiService.saveCartridge(data.id, cartridge);
       if (res.result) {
         context.commit("updateCartridge", cartridge);
+      }
+    },
+    async deleteCartridge(context, id) {
+      let res = await this.state.apiService.deleteCartridge(id);
+      if (res.result) {
+        context.commit("deleteCartridge", id);
       }
     },
   },

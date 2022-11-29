@@ -18,4 +18,5 @@ store.dispatch("books/loadCartridges").then(() => {
 });
 
 // store.dispatch("books/insertCartridge", "Жопа");
-store.dispatch("books/updateCartridge", { id: "2", name: "Тоже жопа2" });
+//store.dispatch("books/updateCartridge", { id: "2", name: "Тоже жопа2" });
+//store.dispatch("books/deleteCartridge", 7);

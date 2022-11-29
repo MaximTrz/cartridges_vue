@@ -12,7 +12,7 @@
         <div v-else class="input-group">
           <span class="input-group-text">Наименование</span>
           <input
-            :value="subTitle"
+            v-model="itemName"
             class="form-control"
             type="text"
             aria-describedby="basic-addon1"
@@ -55,18 +55,24 @@ export default {
     title: String,
     subTitle: String,
     actionList: Array,
+    updateFunction: String,
   },
   data: function () {
     return {
       selectedItem: null,
       editMode: false,
+      itemName: this.subTitle,
     };
   },
   methods: {
     changeEditMode() {
       this.editMode = !this.editMode;
     },
-    save() {
+    async save() {
+      await this.$store.dispatch("books/updateCartridge", {
+        id: this.$route.params.id,
+        name: this.itemName,
+      });
       this.editMode = false;
     },
   },

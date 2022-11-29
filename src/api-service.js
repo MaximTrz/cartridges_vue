@@ -49,6 +49,18 @@ export default class ApiService {
     return result;
   };
 
+  deleteItem = async (url) => {
+    const res = await fetch(`${this._apiBase}${url}`, {
+      method: "DELETE",
+      mode: "cors",
+    });
+    if (!res.ok) {
+      throw new Error(`Could not fetch ${url}` + `, received ${res.status}`);
+    }
+    const result = await res.json();
+    return result;
+  };
+
   getAllСartridges = async () => {
     const res = await this.getResource("/cartridge/");
     return res;
@@ -62,6 +74,12 @@ export default class ApiService {
   saveCartridge = async (id = null, data) => {
     let url = id ? `/cartridge/${id}` : "/cartridge/";
     const res = await this.saveItem(id, url, data);
+    return res;
+  };
+
+  deleteCartridge = async (id) => {
+    const url = `/cartridge/${id}`;
+    const res = await this.deleteItem(url);
     return res;
   };
 }

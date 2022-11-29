@@ -2,6 +2,7 @@
   <AppBookItemsList
     v-if="book.cartridges"
     :addFunction="'insertCartridges'"
+    :deleteFunction="'deleteCartridge'"
   ></AppBookItemsList>
   <AppBookItemsList v-if="book.printers"></AppBookItemsList>
   <AppBookItemsList v-if="book.groups"></AppBookItemsList>

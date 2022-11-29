@@ -23,7 +23,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(item, index) in items" :key="item.id">
+      <tr v-for="(item, index) in this[bookName]" :key="item.id">
         <th scope="row">{{ index + 1 }}</th>
         <td>
           <span class="table_link">{{ item.id }}</span>
@@ -36,7 +36,7 @@
           >
         </td>
         <td>
-          <button class="btn btn-danger">X</button>
+          <button @click="deleteItem(item.id)" class="btn btn-danger">X</button>
         </td>
       </tr>
     </tbody>
@@ -50,19 +50,17 @@ export default {
   name: "BookItemsList",
   mounted: async function () {
     const book = this.$route.params.bookname;
-    const items = this[book];
-    if (typeof items != "undefined") {
-      this.items = items;
+    if (typeof this[book] != "undefined") {
       this.bookName = book;
     }
   },
   props: {
     addFunction: String,
+    deleteFunction: String,
   },
   data: function () {
     return {
       bookName: "",
-      items: [],
       newItem: "",
     };
   },
@@ -70,6 +68,9 @@ export default {
     addNewItem: function () {
       this.$store.dispatch(`books/${this.addFunction}`, this.newItem);
       this.newItem = "";
+    },
+    deleteItem: function (id) {
+      this.$store.dispatch(`books/${this.deleteFunction}`, id);
     },
   },
   computed: {
